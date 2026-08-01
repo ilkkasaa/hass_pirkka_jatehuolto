@@ -1,0 +1,32 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Pirkanmaan Jätehuolto",
+        "description": "Syötä tunnuksesi Oma jätehuolto -palveluun.",
+        "data": {
+          "username": "Käyttäjätunnus",
+          "password": "Salasana"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Tunnistaudu uudelleen",
+        "description": "Päivitä tunnuksesi palveluun.",
+        "data": {
+          "username": "Käyttäjätunnus",
+          "password": "Salasana"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Yhteyden muodostus epäonnistui.",
+      "invalid_auth": "Virheellinen käyttäjätunnus tai salasana.",
+      "unsupported_flow": "Tili vaatii lisätoimia selaimessa ennen integraation käyttöä.",
+      "unknown": "Tuntematon virhe."
+    },
+    "abort": {
+      "already_configured": "Tili on jo lisätty.",
+      "reauth_successful": "Tunnistautuminen päivitetty."
+    }
+  }
+}

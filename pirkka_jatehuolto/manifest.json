@@ -1,0 +1,11 @@
+{
+  "domain": "pirkka_jatehuolto",
+  "name": "Pirkanmaan Jätehuolto",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://extranet.pjhoy.fi/pirkka/sahas.jsp",
+  "iot_class": "cloud_polling",
+  "loggers": ["custom_components.pirkka_jatehuolto"],
+  "requirements": [],
+  "version": "0.1.0"
+}
