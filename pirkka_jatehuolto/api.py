@@ -9,6 +9,7 @@ import logging
 from typing import Any
 
 from aiohttp import ClientError, ClientSession
+from yarl import URL
 
 from .const import BASE_URL
 
@@ -62,6 +63,10 @@ class PirkkaApiClient:
 
     async def fetch_bins(self) -> list[BinEmptying]:
         """Log in and fetch bin emptying dates."""
+        # Refreshes are hours or days apart, so the previous server session has
+        # most likely expired. The service answers stale sessions with HTTP 500
+        # instead of 401, so always start from a fresh login.
+        self._reset_session()
         await self._login()
 
         customer_data = await self._get_json("/secure/get_customer_datas.do")
@@ -105,6 +110,13 @@ class PirkkaApiClient:
             bins.append(BinEmptying(bin_id=bin_id, name=name, next_emptying=next_emptying))
 
         return bins
+
+    def _reset_session(self) -> None:
+        """Forget login state and drop stale session cookies for the service."""
+        self._is_logged_in = False
+        host = URL(self._base_url).host
+        if host:
+            self._session.cookie_jar.clear_domain(host)
 
     async def _login(self) -> None:
         """Authenticate and establish session cookies."""

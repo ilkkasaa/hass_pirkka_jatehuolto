@@ -118,7 +118,7 @@ class PirkkaDataUpdateCoordinator(DataUpdateCoordinator[PirkkaCoordinatorData]):
             base_interval = DEFAULT_NO_DATE_REFRESH
         else:
             earliest = min(next_dates)
-            if earliest < now.date():
+            if earliest <= now.date():
                 base_interval = DEFAULT_PAST_DATE_REFRESH
             else:
                 refresh_at = datetime.combine(
